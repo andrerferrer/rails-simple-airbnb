@@ -1,0 +1,7 @@
+<%= link_to "Add a Flat", new_flat_path, class: "btn btn-primary" %>
+
+<% @flats.each do |flat| %>
+  <p><%= link_to flat.name, flat_path(flat) %></p>
+  <%= link_to "Delete #{flat.name}", flat_path(flat), method: :delete,
+  data: { confirm: "Do you really want to delete #{flat.name}?" } %>
+<% end %>

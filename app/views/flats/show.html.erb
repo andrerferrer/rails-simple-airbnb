@@ -1,0 +1,7 @@
+<%= link_to "Edit it", edit_flat_path(@flat) %>
+
+<% Flat::ATTRIBUTES.each do |attribute| %>
+  <p><%= attribute  %>: <%= @flat.send(attribute) %></p>
+<% end %>
+
+<%= link_to "Flats", flats_path %>

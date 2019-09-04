@@ -1,0 +1,6 @@
+<%= simple_form_for flat do |f| %>
+  <% Flat::ATTRIBUTES.each do |attribute| %>
+    <%= f.input attribute.to_sym %>
+  <% end %>
+  <%= f.submit %>
+<% end %>

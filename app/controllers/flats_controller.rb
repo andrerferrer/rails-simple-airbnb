@@ -1,18 +1,36 @@
 class FlatsController < ApplicationController
-  before_action :find_flat, only: %i[show]
+  before_action :find_flat, only: %i[show edit]
   before_action :set_flats, only: %i[index]
   before_action :new_flat, only: %i[new]
 
   def create
     new_flat(flat_params)
-    if @flat.save
-      go_to_flat
-    else
-      render :new
-    end
+    save_it(:new)
+  end
+
+  def update
+    find_flat.update(flat_params)
+    save_it(:edit)
+  end
+
+  def destroy
+    find_flat.destroy
+    go_home
   end
 
   private
+
+  def go_home
+    redirect_to flats_path
+  end
+
+  def save_it(no_idea)
+    if @flat.save
+      go_to_flat
+    else
+      render no_idea
+    end
+  end
 
   def set_flats
     @flats = Flat.all
